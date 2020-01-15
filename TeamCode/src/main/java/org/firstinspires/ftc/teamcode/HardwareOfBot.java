@@ -44,14 +44,15 @@ class HardwareOfBot {
     final static double CYCLES_PER_WHEEL_ROTATION = CYCLES_PER_ENCODER_SHAFT_ROTATION * FINAL_GEAR_REDUCTION;
     final static double CYCLES_PER_CM = CYCLES_PER_WHEEL_ROTATION / WHEEL_CIRCUMFERENCE_CM;
 
-    /* Public OpMode members. */
+    /* Members to be used by Opmodes. */
     DcMotor frontLeft;
     DcMotor frontRight;
     DcMotor backLeft;
     DcMotor backRight;
     DcMotor brickExtender;
     Servo brickClaw;
-    ColorSensor colorSensor;
+    ColorSensor leftColorSensor;
+    ColorSensor downColorSensor;
 
     HardwareOfBot(HardwareMap hardwareMap){
 
@@ -62,7 +63,8 @@ class HardwareOfBot {
         backRight = hardwareMap.get(DcMotor.class,"back_right");
         brickExtender = hardwareMap.get(DcMotor.class, "brick_extender");
         brickClaw = hardwareMap.get(Servo.class, "brick_claw");
-        colorSensor = hardwareMap.get(ColorSensor.class, "color_sensor");
+        leftColorSensor = hardwareMap.colorSensor.get("left_color_sensor");
+        downColorSensor = hardwareMap.colorSensor.get("down_color_sensor");
 
         //Set motor direction
         frontRight.setDirection(DcMotor.Direction.FORWARD);
